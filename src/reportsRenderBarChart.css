@@ -1,0 +1,31 @@
+/* .recharts-bar-rectangle {
+    background: none !important;
+  }
+  
+  .recharts-wrapper, .recharts-surface {
+    background: none !important;
+  }
+   */
+
+   /* .recharts-bar-rectangle:hover {
+    fill: none !important;
+    stroke: none !important;
+    opacity: 1 !important;
+  }
+   */
+/* .recharts-bar-background-rectangle {
+    fill: none !important;
+} */
+/* .recharts-surface {
+    background: none !important;
+}
+
+.recharts-bar-background-rectangle {
+    fill: none !important;
+    stroke: none !important;
+} */
+
+.recharts-bar-background-rectangle:nth-child(3) {
+    fill: none !important;
+    stroke: none !important;
+}

@@ -1,0 +1,24 @@
+.logo-icon {
+    background: transparent !important; /* No background */
+}
+
+.logo-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Prevent cropping */
+    image-rendering: crisp-edges; /* Makes the image sharper */
+    transition: all 0.3s ease-in-out;
+}
+
+/* Fix for sidebar collapse */
+.sidebar.collapsed .logo-img {
+    width: 50px; /* Match logo size */
+    height: 50px;
+    image-rendering: pixelated; /* Ensures sharp image */
+}
+
+/* Improve clarity when uncollapsed */
+.sidebar:not(.collapsed) .logo-img {
+    image-rendering: high-quality; /* Ensures clear image */
+}

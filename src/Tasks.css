@@ -1,0 +1,624 @@
+/* 
+// import React, { useState, useEffect, useRef } from "react";
+// import {
+//   Menu,
+//   Dropdown,
+//   Button,
+//   Table,
+//   Spin,
+//   Alert,
+//   message,
+//   Input,
+//   Modal,
+//   Radio,
+//   Checkbox,
+// } from "antd";
+// import axios from "axios";
+// import { useAuth } from "./AuthContext";
+// import "./Shots.css";
+// import { ip_port } from "./Configs";
+// import { ip_port } from "./Configs";
+// import { ShotsTasksProjMenu } from "./shotsDropdownMenuClicks";
+// import { ShotsTasksDeptMenu } from "./shotsDropdownMenuClicks";
+// import { fetchProjOptions } from "./tasksfunctions";
+// import { fetchProjDepts } from "./tasksfunctions";
+// import { handleTaskShowTableClick } from "./tasksfunctions";
+
+// import qs from "qs";
+
+// const Tasks = () => {
+//   const { userControls, filteredData, accessToken, designation, user } =
+//     useAuth();
+
+//   const [taskProjOptions, setTaskProjOptions] = useState([]);
+//   const [selectedTaskProject, setSelectedTaskProject] = useState(
+//     localStorage.getItem("tasksSelectedProject") || null
+//   );
+
+//   const [selectedTaskDept, setSelectedTaskDept] = useState(
+//     localStorage.getItem("tasksSelectedDept") || null
+//   );
+
+//   const [taskDeptOptions, setTaskDeptOptions] = useState([]);
+
+//   const [AuthorizedHeaders, setAuthorizedHeaders] = useState([]);
+//   const [authorizedDepartments, setAuthorizedDepartments] = useState([]);
+//   const [currentPage, setCurrentPage] = useState(1);
+//   const [showTaskTable, setTaskShowTable] = useState(
+//     JSON.parse(localStorage.getItem("tasksShowTable")) || false
+//   );
+
+//   const [taskColumns, setTaskColumns] = useState([]);
+//   const [taskData, setTaskData] = useState([]);
+
+//   const status_order = {
+//     YTS: ["WIP"],
+//     WIP: ["PAUSE", "READY TO REVIEW"],
+//     PAUSE: ["WIP", "READY TO REVIEW"],
+//     "READY TO REVIEW": [],
+//   };
+
+//   const [editingRow, setEditingRow] = useState(null);
+//   const [statusOptions, setStatusOptions] = useState([]);
+//   // Customize as needed
+//   const [selectedStatus, setSelectedStatus] = useState(null);
+//   const [isStatusModalVisible, setIsStatusModalVisible] = useState(false);
+
+//   useEffect(() => {
+//     const loadInitialData = async () => {
+//       const savedProject = localStorage.getItem("tasksSelectedProject");
+//       const savedDeptOption = localStorage.getItem("tasksSelectedDept");
+
+//       const savedAuthorizedHeaders =
+//         JSON.parse(localStorage.getItem("shotAuthorizedHeaders")) || [];
+
+//       if (savedProject) {
+//         setSelectedTaskProject(savedProject);
+//         const projDepts = await fetchProjDepts(savedProject, accessToken);
+//         setAuthorizedDepartments(projDepts);
+//       }
+
+//       if (savedAuthorizedHeaders.length > 0) {
+//         setAuthorizedHeaders(savedAuthorizedHeaders);
+//         setSelectedTaskDept(savedAuthorizedHeaders);
+//       }
+
+//       if (savedDeptOption && savedDeptOption !== "select") {
+//         setSelectedTaskDept(savedDeptOption);
+//       } else {
+//         setSelectedTaskDept(null);
+//       }
+//     };
+
+//     loadInitialData();
+//     fetchProjOptions(accessToken, setTaskProjOptions);
+//     fetchDeptOptions();
+//   }, []);
+
+//   useEffect(() => {
+//     console.log("usercontrols1", userControls, typeof userControls);
+//     const AuthHeaders = userControls.filter((x) =>
+//       authorizedDepartments.includes(x)
+//     );
+
+//     setAuthorizedHeaders(AuthHeaders);
+//     localStorage.setItem(
+//       "biddingAuthorizedHeaders",
+//       JSON.stringify(AuthHeaders)
+//     );
+//     setTaskDeptOptions(AuthHeaders);
+//   }, [authorizedDepartments]);
+
+//   useEffect(() => {
+//     fetchProjOptions(accessToken, setTaskProjOptions);
+//     fetchDeptOptions();
+//   }, []);
+
+//   useEffect(() => {
+//     const accessToken = localStorage.getItem("accessToken");
+//     const storedSelectedTaskDept = localStorage.getItem("tasksSelectedDept");
+
+//     setSelectedTaskDept(storedSelectedTaskDept);
+//     fetchProjOptions(accessToken, setTaskProjOptions);
+
+//     if (storedSelectedTaskDept && storedSelectedTaskDept !== "select") {
+  
+//       handleTaskShowTable();
+//     }
+//   }, []);
+
+//   useEffect(() => {
+//     const savedData = localStorage.getItem("finalTaskData");
+//     const savedColumns = localStorage.getItem("finalTaskColumns");
+
+//     if (savedData && savedColumns) {
+//       setTaskData(JSON.parse(savedData));
+//       setTaskColumns(JSON.parse(savedColumns));
+//     }
+//   }, []);
+
+//   fetchProjOptions(accessToken, setTaskProjOptions);
+// // 
+//   const fetchDeptOptions = () => {
+//     const savedAuthorizedHeaders = JSON.parse(
+//       localStorage.getItem("biddingAuthorizedHeaders")
+//     );
+//     if (savedAuthorizedHeaders && savedAuthorizedHeaders.length > 0) {
+//       setTaskDeptOptions(savedAuthorizedHeaders);
+//     } else {
+//       setTaskDeptOptions(AuthorizedHeaders);
+//     }
+//   };
+
+//   fetchProjDepts(selectedTaskProject, accessToken);
+
+//   const resetToInitialStatesShots = () => {
+//     setSelectedTaskProject("select");
+//     localStorage.setItem("tasksSelectedProject", "select");
+
+//     setSelectedTaskDept("select");
+//     localStorage.setItem("tasksSelectedDept", "select");
+
+//     setTaskShowTable(false);
+
+//     setAuthorizedDepartments([]);
+//   };
+
+//   const handleTasksProjClick = async (e) => {
+//     if (e.key === "select") {
+//       message.warning("Select an option");
+//       resetToInitialStatesShots();
+//       return;
+//     }
+
+//     setSelectedTaskProject(e.key);
+//     localStorage.setItem("tasksSelectedProject", e.key);
+
+//     setSelectedTaskDept("select");
+//     localStorage.setItem("tasksSelectedDept", "select");
+
+//     setTaskShowTable(false);
+//     // localStorage.setItem("biddingShowTable", false);
+//     // setData([]);
+//     // setColumns([]);
+
+//     const shotProjDepts = await fetchProjDepts(e.key, accessToken);
+//     console.log("projDepts", eval(shotProjDepts));
+//     setAuthorizedDepartments(shotProjDepts);
+//   };
+
+//   const handleTasksDeptClick = (e) => {
+//     if (e.key === "select") {
+//       message.warning("Select an option");
+//       setSelectedTaskDept(null);
+//       localStorage.setItem("tasksSelectedDept", "select");
+
+//       setTaskShowTable(false);
+//     } else {
+//       setSelectedTaskDept(e.key);
+//       localStorage.setItem("tasksSelectedDept", e.key);
+
+//       setTaskShowTable(false);
+//     }
+//   };
+
+//   const getStoredTableState = () => {
+//     const storedState = localStorage.getItem("tableState");
+//     return storedState ? JSON.parse(storedState) : {};
+//   };
+
+//   const storedState = getStoredTableState();
+
+//   const [tableParams, setTableParams] = useState({
+//     pagination: storedState.pagination || { pageSize: 10 },
+//     filters: storedState.filters || {},
+//     sorter: storedState.sorter || {},
+//   });
+
+//   const handleTableChange = (pagination, filters, sorter) => {
+//     const newState = {
+//       pagination,
+//       filters,
+//       sorter: sorter.columnKey ? sorter : {},
+//     };
+//     setTableParams(newState);
+//     localStorage.setItem("tableState", JSON.stringify(newState));
+
+//     console.log("pagination", pagination);
+//     console.log("pagination", currentPage);
+//     setCurrentPage(pagination.current);
+//     console.log("pagination", currentPage);
+//     // fetchData(pagination.current);
+//   };
+
+//   const calculateColumnWidth = (key, data) => {
+//     const padding = 40;
+//     const maxLength = Math.max(
+//       ...data.map((item) => (item[key] ? item[key].toString().length : 0)),
+//       key.length
+//     );
+
+//     let calculatedWidth = maxLength * 10 + padding;
+
+//     return Math.min(Math.max(120, calculatedWidth), 800);
+//   };
+
+//   const handleTaskShowTable = async ({
+//     proj = "none",
+//     artist_id = "none",
+//     department = "none",
+//   }) => {
+//     try {
+//       setTaskShowTable(true);
+//       localStorage.setItem("tasksShowTable", true);
+
+//       const params = {};
+
+//       if (proj !== "none") {
+//         params.proj = proj;
+//       }
+//       if (artist_id !== "none") {
+//         params.artist_id = artist_id;
+//       }
+//       const finalDepartment =
+//         department !== "none" ? department : selectedTaskDept;
+//       console.log("finalDepartment", finalDepartment);
+
+//       if (
+//         finalDepartment &&
+//         finalDepartment !== "select" &&
+//         finalDepartment !== "none"
+//       ) {
+//         params.department = Array.isArray(finalDepartment)
+//           ? finalDepartment
+//           : [finalDepartment];
+//         // }
+//       }
+//       console.log("Final Params:", params);
+
+//       const response = await axios.get(`http://${ip_port}/assign_shot_task/`, {
+//         params,
+
+//         paramsSerializer: (params) => {
+//           return qs.stringify(params, { arrayFormat: "repeat" });
+//         },
+//         headers: {
+//           Authorization: `Bearer ${accessToken}`,
+//           "Content-Type": "application/json",
+//         },
+//       });
+//       console.log("response", response);
+//       console.log("params", params);
+//       console.log("Fetched task data:", response.data);
+//       const responseTaskData = response.data;
+//       setTaskData(responseTaskData);
+//       localStorage.setItem("finalTaskData", JSON.stringify(responseTaskData));
+
+//       const handleCellDoubleClick = (record, columnKey) => {
+//         if (columnKey !== "status") return;
+
+//         if (user.emp_id === record.artist_id) {
+//           const currentStatus = record.status;
+//           const options = status_order[currentStatus] || [];
+
+//           if (options.length === 0) {
+//             message.info("No further status transitions available.");
+//             return;
+//           }
+
+//           setEditingRow(record);
+//           setSelectedStatus(currentStatus);
+//           setStatusOptions(options); // NEW: dynamic options
+//           setIsStatusModalVisible(true);
+//         } else {
+//           message.error("You are not authorized to edit this status.");
+//         }
+//       };
+
+//       if (response.data.length > 0) {
+//         const generatedColumns = Object.keys(response.data[0])
+//           .filter((key) => key !== "_id")
+
+//           .map((key, index) => ({
+//             title: key.toUpperCase(),
+//             dataIndex: key,
+//             key: key,
+//             width: calculateColumnWidth(key, taskData),
+//             ellipsis: true,
+//             fixed: index < 4 ? "left" : false,
+//             filters: [
+//               // ...Array.from(new Set(taskData.map((item) => item[key]))).map(
+//               ...Array.from(
+//                 new Set(response.data.map((item) => item[key]))
+//               ).map((value) => ({
+//                 text: value,
+//                 value: value,
+//               })),
+//             ],
+
+//             onFilter: (value, record) => record[key] === value,
+//             sorter: (a, b) => {
+//               if (typeof a[key] === "number") {
+//                 return a[key] - b[key];
+//               } else if (typeof a[key] === "string") {
+//                 return a[key].localeCompare(b[key]);
+//               }
+//               return 0;
+//             },
+
+//             sortDirections: ["descend", "ascend"],
+//             onCell: (record) => ({
+//               // style: getHighlightedStyle(record, key),
+//               onDoubleClick: () => handleCellDoubleClick(record, key),
+//             }),
+//           }));
+//         setTaskColumns(generatedColumns);
+//         localStorage.setItem(
+//           "finalTaskColumns",
+//           JSON.stringify(generatedColumns)
+//         );
+//       } else {
+//         setTaskColumns([]);
+//       }
+//     } catch (error) {
+//       console.error("Error fetching tasks data:", error);
+//       message.error("Failed to fetch task data.");
+//     }
+//   };
+
+//   return (
+//     <div className="tasks_tab_container">
+//       <div style={{ textAlign: "center", marginTop: "50px" }}>
+//         <div
+//           style={{
+//             display: "flex",
+
+//             flexWrap: "wrap",
+//             gap: "20px",
+//             marginRight: "auto",
+//           }}
+//         >
+//           <div style={{ marginLeft: "20px" }}>
+//             <label
+//               htmlFor="tasks_proj_dropdown"
+//               style={{
+//                 marginRight: "5px",
+//                 textAlign: "center",
+//                 borderRadius: "5px",
+//               }}
+//             >
+//               Project:
+//             </label>
+//             <Dropdown
+//               overlay={
+//                 <ShotsTasksProjMenu
+//                   taskProjOptions={taskProjOptions}
+//                   handleTasksProjClick={handleTasksProjClick}
+//                 />
+//               }
+//               trigger={["hover"]}
+//             >
+//               <Button id="tasks_proj_dropdown">
+//                 {selectedTaskProject || "Select an option"}
+//               </Button>
+//             </Dropdown>
+//           </div>
+//           <div style={{ marginLeft: "8px" }}>
+//             <label
+//               htmlFor="tasks_dept_dropdown"
+//               style={{
+//                 marginRight: "5px",
+//                 textAlign: "center",
+//                 borderRadius: "5px",
+//               }}
+//             >
+//               Select Dept:
+//             </label>
+//             <Dropdown
+//               overlay={
+//                 <ShotsTasksDeptMenu
+//                   taskDeptOptions={taskDeptOptions}
+//                   handleTasksDeptClick={
+//                     handleTasksDeptClick
+                     
+                   
+//                   }
+//                   accessToken={accessToken}
+//                   designation={designation}
+//                 />
+//               }
+//               trigger={["hover"]}
+//             >
+//               <Button id="shots_dept_dropdown">
+//                 {selectedTaskDept || "Select an Option"}
+//               </Button>
+//             </Dropdown>
+//           </div>
+
+//           <div>
+//             <Button
+//               type="primary"
+//               onClick={() =>
+//                 handleTaskShowTableClick(
+//                   designation,
+//                   userControls,
+//                   user.emp_id,
+//                   selectedTaskDept,
+//                   selectedTaskProject,
+//                   handleTaskShowTable
+//                 )
+//               }
+//               disabled={!selectedTaskProject}
+//             >
+//               Show Table
+//             </Button>
+//           </div>
+//           <div
+//             style={{
+//               display: "flex",
+
+//               flexWrap: "wrap",
+//               gap: "20px",
+//               marginLeft: "auto",
+//             }}
+//           >
+//             <Button>Edit Mandays</Button>
+//             <Button>Change to YTS</Button>
+
+//             <Button>WIP Tasks</Button>
+//             <Button>Re Assign</Button>
+//             <Button>Delete Task</Button>
+//             <Button>Exel Export</Button>
+//           </div>
+
+//           {showTaskTable && selectedTaskProject && (
+//             <Table
+//               className="custom-table"
+//               columns={taskColumns}
+//               dataSource={taskData}
+//               rowKey={(record) => record.id}
+//               // onRow={(record, rowIndex) => {
+//               //   return {
+//               //     onDoubleClick: () => {
+                    
+//               //       console.log("Double clicked row:", record);
+//               //       setEditingRow(record);
+//               //     },
+//               //   };
+//               // }}
+//               onChange={handleTableChange}
+//               filteredValue={tableParams.filters}
+//               sortOrder={tableParams.sorter?.order}
+//               sortedInfo={tableParams.sorter}
+//               agination={tableParams.pagination}
+//               scroll={{ x: "max-content", y: 400 }}
+//               style={{ marginTop: "60px", border: "2px solid #ccc" }}
+//               bordered
+//             />
+//           )}
+
+//           <Modal
+//             title="Update Status"
+//             open={isStatusModalVisible}
+//             onOk={async () => {
+//               try {
+//                 // Make API call to update in the backend
+//                 const updatedRow = { ...editingRow, status: selectedStatus };
+
+//                 await axios.patch(
+//                   `http://${ip_port}/assign_shot_task/${editingRow._id}/`, // Update the endpoint & key
+//                   { status: selectedStatus },
+//                   {
+//                     headers: {
+//                       Authorization: `Bearer ${accessToken}`,
+//                       "Content-Type": "application/json",
+//                     },
+//                   }
+//                 );
+
+//                 const updatedData = taskData.map((item) =>
+//                   item.key === editingRow.key ? updatedRow : item
+//                 );
+//                 setTaskData(updatedData);
+//                 setIsStatusModalVisible(false);
+//                 setEditingRow(null);
+//               } catch (error) {
+//                 console.error("Error updating status:", error);
+//                 message.error("Failed to update status in the database.");
+//               }
+//             }}
+//             onCancel={() => {
+//               setIsStatusModalVisible(false);
+//               setEditingRow(null);
+//             }}
+//           >
+//             <Radio.Group
+//               value={selectedStatus}
+//               onChange={(e) => setSelectedStatus(e.target.value)}
+//             >
+//               {statusOptions.map((status) => (
+//                 <Radio.Button key={status} value={status}>
+//                   {status}
+//                 </Radio.Button>
+//               ))}
+//             </Radio.Group>
+//           </Modal>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+// export default Tasks; */
+
+
+/* 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import React, { useState, useEffect } from "react";
+
+const TimerComponent = () => {
+  const [isTimerRunning, setIsTimerRunning] = useState(false);
+  const [timeInSeconds, setTimeInSeconds] = useState(0);
+  const [formattedTime, setFormattedTime] = useState("00:00:00");
+
+  useEffect(() => {
+    let timer;
+
+    if (isTimerRunning) {
+      timer = setInterval(() => {
+        setTimeInSeconds((prevTime) => prevTime + 1);
+      }, 1000);
+    }
+
+    return () => clearInterval(timer);
+  }, [isTimerRunning]);
+
+  useEffect(() => {
+    const hours = String(Math.floor(timeInSeconds / 3600)).padStart(2, "0");
+    const minutes = String(Math.floor((timeInSeconds % 3600) / 60)).padStart(2, "0");
+    const seconds = String(timeInSeconds % 60).padStart(2, "0");
+
+    setFormattedTime(`${hours}:${minutes}:${seconds}`);
+
+    // Log only every full minute
+    if (seconds === "00") {
+      console.log("formattedTime:", `${hours}:${minutes}:${seconds}`);
+    }
+  }, [timeInSeconds]);
+
+
+  return (
+    <div>
+      <h2>Timer: {formattedTime}</h2>
+      <button onClick={() => setIsTimerRunning(!isTimerRunning)}>
+        {isTimerRunning ? "Stop Timer" : "Start Timer"}
+      </button>
+    </div>
+  );
+};
+
+export default TimerComponent; */
+
+
+
+
+/* 
+.custom-bottom-message {
+  position: fixed !important;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1050;
+} */

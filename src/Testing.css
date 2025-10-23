@@ -1,0 +1,64 @@
+/* import React from 'react';
+import { AgGridReact } from 'ag-grid-react';
+
+import 'ag-grid-community/styles/ag-grid.css';
+import 'ag-grid-community/styles/ag-theme-alpine.css';
+
+const columnDefs = [
+  { field: 'category', rowGroup: true, hide: true },
+  { field: 'type', pinned: 'left' },
+  { field: 'quantity', aggFunc: 'sum' },
+];
+
+const rowData = [
+  { category: 'Fruit', type: 'Apple', quantity: 100 },
+  { category: 'Fruit', type: 'Orange', quantity: 80 },
+  { category: 'Vegetable', type: 'Carrot', quantity: 60 },
+];
+
+export default function AGGridExample() {
+  return (
+    <div className="ag-theme-alpine" style={{ height: 500, width: '100%' }}>
+      <AgGridReact
+        rowData={rowData}
+        columnDefs={columnDefs}
+        groupIncludeFooter
+        animateRows
+        defaultColDef={{
+          sortable: true,
+          filter: true,
+          resizable: true,
+        }}
+      />
+    </div>
+  );
+} */
+
+
+
+/* useEffect(() => {
+  if (selectedTaskProject) {= selectedTaskProject
+    setFilteredTaskRowData([]); = setSelectedRowData
+    setSelectedRowForTextArea(null);
+    setShowTaskTextArea(false);
+    localStorage.removeItem("filteredTaskRowData");
+    localStorage.removeItem("selectedTaskRow");
+    console.log("🧹Reset task row data on project change");
+  }
+}, [selectedTaskProject]); */
+
+
+.react-resizable {
+  position: relative;
+  background-clip: padding-box;
+}
+
+.react-resizable-handle {
+  position: absolute;
+  right: -5px;
+  bottom: 0;
+  width: 10px;
+  height: 100%;
+  cursor: col-resize;
+  z-index: 1;
+}

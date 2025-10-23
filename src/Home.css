@@ -1,0 +1,192 @@
+.home_bg_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.home_container {
+  display: flex;
+  flex-direction: column;
+ 
+  text-align: center;
+  background-color: rgb(245, 243, 240);
+  height: 90vh;
+  width: 86vh;
+  border: 0;
+  border-radius: 8px;
+}
+
+.main_heading {
+  font-size: 24px;
+  font-weight: bold;
+  font-family: "roboto";
+  text-align: center;
+  color: aqua;
+}
+
+.main_heading_container {
+  margin: 11px;
+}
+.user_data_container {
+  display: flex;
+  flex-direction: column;
+  width: 80vh;
+  height: 18vh;
+  border: 2px solid grey;
+  border-radius: 8px;
+  margin-left: 29px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.user_heading_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: "11px";
+}
+.user_heading {
+  font-size: 18px;
+  padding-top: 11px;
+  color: black;
+  font-weight: bold;
+}
+
+.refresh_button {
+  background-color: rgb(145, 212, 43);
+  margin: 11px;
+}
+/* background-color: rgb(186, 219, 137); */
+.logout_button {
+  background-color: rgb(216, 93, 93);
+  margin: 11px;
+}
+
+.user_details_container {
+  display: flex;
+  flex-direction: row;
+  gap: 300px;
+  margin-top: 20px;
+}
+.user_column {
+    display: flex;
+    flex-direction: column;
+     margin-left: 12px;
+    align-items: flex-start;
+    gap: 10px; 
+  }
+
+.user_label {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0;
+    color: #333;
+    min-width: 150px;
+  }
+  
+.user_tasks_container {
+  display: flex;
+  flex-direction: column;
+  width: 80vh;
+  height: 28vh;
+  /* border: 2px solid black; */
+  border:2px solid grey;
+  border-radius: 8px;
+  margin-top: 11px;
+  margin-left: 29px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tasks_refresh_button {
+  /* background-color: rgb(186, 219, 137); */
+  background-color: rgb(145, 212, 43);
+  
+  margin: 11px;
+}
+.tasks_refresh_button_container {  
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.tasks_heading {
+  font-size: 18px;
+  color: black;
+  text-align: "center";
+  font-style: "roboto";
+  margin-top: "2px";
+  font-weight: bold;
+}
+.modes_container {
+  display: flex;
+  flex-direction: column;
+  width: 80vh;
+  height: 22vh;
+  border: 2px solid grey;
+  border-radius: 8px;
+  margin-top: 11px;
+  padding:11px;
+  margin-left: 29px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modes_heading {
+  font-size: 18px;
+  color: black;
+  text-align: "center";
+  font-style: "roboto";
+  margin-top: 11px;
+  margin-bottom: 0px;
+  font-weight: bold;
+}
+
+.wrapping_modes_container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 12px;        
+  padding: 10px;
+  line-height: 3px;
+}
+.radio_option {
+  color: black;
+  padding: 13px;
+}
+
+.timer {
+  font-family: monospace;
+  font-size: 14px;
+  color: #65c3fa;
+}
+
+.radio_option_row {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.status_container {
+  display: flex;
+  flex-direction: column;
+  width: 80vh;
+  height: 8vh;
+  border: 2px solid grey;
+  border-radius: 8px;
+  margin-top: 11px;
+  margin-left: 29px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  justify-content: center;
+  align-items: center;
+}
+
+.login_status_heading {
+  color: black;
+  font-size: 19px;
+  font-family: "roboto";
+  font-weight: bold;
+}
+

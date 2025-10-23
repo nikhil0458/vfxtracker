@@ -1,0 +1,105 @@
+
+
+.custom-table .ant-table-cell {
+    padding: 8px; 
+    white-space: nowrap; 
+  }
+  
+  .custom-table .ant-table-thead > tr > th {
+    padding: 8px; 
+    position: sticky;
+
+    /* position: relative; */
+    /* top:10px; */
+
+  }
+  
+  .custom-table .ant-table-tbody > tr > td {
+    padding: 8px;
+    
+
+  }
+
+ /* .ant_spin_container{
+  position: sticky;
+  top: 10px;
+}  */
+/* 
+  .custom-table .custom-selected-row {
+    background-color: #e6f7ff !important;
+  } */
+/* Style the mandays cell for layout */
+.mandays-cell {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Hide the remove button by default */
+.hover-row .remove-btn {
+  visibility: hidden;
+}
+
+/* Show it when row is hovered */
+.hover-row:hover .remove-btn {
+  visibility: visible;
+}
+
+
+/* .light-theme .split-Modal .ant-modal-content {
+  background-color: #f0fcea !important;
+} 
+
+
+.light-theme .modal-checkbox-container .ant-card-body {
+  background-color: #f0fcea !important;
+  background-size:cover;
+} 
+
+.dark-theme .split-Modal .ant-modal-content {
+  background-color: #121212; 
+}
+ */
+
+
+/* .light-theme .split-Modal .ant-modal, */
+/* .light-theme .split-Modal .ant-modal-content {
+ */
+/* .light-theme .split-Modal .ant-modal,
+.light-theme .split-Modal .ant-modal-content {
+  background-color: #f0fcea !important;
+  background-size:cover;
+  
+} */
+
+
+
+.scrollable-table-wrapper {
+  overflow-x: auto;
+  /* overflow-y: auto; */
+  overflow-y: hidden;
+  /* max-height:80vh; */
+  max-height:none;
+  max-width:100vw;
+  position: relative;
+  /* margin:51px; */
+  margin-top: 56px;  
+  padding: 0px 10px 10px 10px;
+  /* scrollbar-width: thin; */
+  /* border-top: 1px solid #d9d9d9 */
+}
+
+.scrollable-table-wrapper.rendered {
+  visibility: visible;
+}
+
+/* .custom-table .ant-table-header {
+  position: sticky !important;
+  top: 0;
+  z-index: 2;
+  background: white; 
+} */
+
+
+

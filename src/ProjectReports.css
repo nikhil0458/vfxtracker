@@ -1,0 +1,104 @@
+.project_reports_container{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+}
+
+.project_label{
+    display:flex;
+    flex-direction:row;
+    margin:10px;
+    padding:10px;
+    margin-right: 10px; 
+    white-space: nowrap;
+
+}
+.option_label{
+    display:flex;
+    flex-direction:row;
+    margin:10px;
+    padding:10px;
+    margin-right:8px;
+    margin-left: -2px;
+    margin-right: 10px;
+    white-space: nowrap;
+}
+
+.scene_label{
+    display:flex;
+    flex-direction:row;
+    margin:10px;
+    padding:10px;
+    margin-right: 10px; 
+    white-space: nowrap;
+}
+
+
+.display_horizontal{
+
+    display: flex;
+    flex-direction:row;
+    width: 100%;
+    gap: 10px; 
+    justify-content: center;
+
+}
+
+@media (min-width: 768px) {
+    .display_horizontal, Table {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .project_label, .option_label, .scene_label {
+        width: 30%; 
+    }
+}
+
+@media (max-width: 767px) {
+    .project_label, .option_label, .scene_label,Table {
+        width: 100%; 
+    }
+}
+@media (max-width: 576px) {
+    .project_label, .option_label, .scene_label, Table {
+        width: 100%; 
+    }
+}
+.custom-table .ant-table-tbody > tr.grand-total-row > td {
+    background-color:rgb(164, 224, 245) !important; 
+    font-weight: bold;
+    font-size: 14px; 
+}
+
+/* Your CSS or in App.css / global styles */
+
+.react-resizable {
+    position: relative;
+    background-clip: padding-box;
+  }
+  
+  .react-resizable-handle {
+    position: absolute;
+    right: -5px;
+    bottom: 0;
+    width: 10px;
+    height: 100%;
+    cursor: col-resize;
+    z-index: 1;
+  }
+  
+  
+  .react-resizable {
+    position: relative;
+  }
+  .react-resizable-handle {
+    background: transparent;
+  }
+  .react-resizable-handle:hover {
+    background: rgba(0,0,0,0.05);
+  }  

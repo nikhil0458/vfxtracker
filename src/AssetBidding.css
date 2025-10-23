@@ -1,0 +1,127 @@
+/* const timeToMandays = (timeString) => {
+  const [hours, minutes, seconds] = timeString.split(":").map(Number);
+  const totalSeconds = hours * 3600 + minutes * 60 + seconds;
+  return Number((totalSeconds / (7.5 * 3600)).toFixed(2));
+};
+
+const mandaysToHours = (mandays) => {
+  return (mandays * 7.5).toFixed(2);
+};
+
+const handleEditMandays = async () => {
+  if (!selectedRow) {
+    message.warning("Please select a row to edit mandays.");
+    return;
+  }
+
+  const { asset_name, field, hours_spent, mandays } = selectedRow;
+
+  if (!asset_name || !field || !hours_spent || mandays == null) {
+    message.error("Missing required fields (asset_name, field, hours_spent, mandays).");
+    return;
+  }
+
+  const convertedMandays = timeToMandays(hours_spent);
+
+  try {
+    // Step 1: Fetch scope (min/max) from API
+    const response = await axios.get(`http://${ip_port}/edit_mandays/`, {
+      params: {
+        asset_name,
+        field,
+        hours_spent,
+        mandays,
+      },
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    const { scope } = response.data;
+
+    if (!scope || scope.min == null || scope.max == null) {
+      message.error("Invalid scope returned from API.");
+      return;
+    }
+
+    const minMandays = scope.min;
+    const maxMandays = scope.max;
+
+    let selectedMandays = mandays;
+
+    Modal.confirm({
+      title: "Edit Mandays",
+      width: 600,
+      icon: null,
+      okText: "Submit",
+      cancelText: "Cancel",
+      content: (
+        <div>
+          <p><strong>Asset Name:</strong> {asset_name}</p>
+          <p><strong>Field:</strong> {field}</p>
+          <p><strong>Hours Spent:</strong> {hours_spent}</p>
+          <p><strong>Mandays in Row:</strong> {mandays}</p>
+          <p><strong>Mandays from Time:</strong> {convertedMandays}</p>
+
+          <p><strong>Adjust Mandays:</strong></p>
+          <Slider
+            min={minMandays}
+            max={maxMandays}
+            step={0.1}
+            defaultValue={mandays}
+            tooltip={{ open: true }}
+            onChange={(val) => {
+              selectedMandays = val;
+            }}
+          />
+        </div>
+      ),
+      onOk: async () => {
+        if (selectedMandays < minMandays || selectedMandays > maxMandays) {
+          message.error(`Mandays must be between ${minMandays} and ${maxMandays}.`);
+          return Promise.reject();
+        }
+
+        const hours = mandaysToHours(selectedMandays);
+
+        try {
+          const result = await axios.get(`http://${ip_port}/mandays_api/`, {
+            params: {
+              asset_name,
+              field,
+              mandays: selectedMandays,
+              hours,
+            },
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          });
+
+          message.success("Mandays updated successfully.");
+          console.log("Final API Response:", result.data);
+        } catch (error) {
+          console.error("Mandays update failed:", error);
+          message.error("Failed to submit updated mandays.");
+        }
+      },
+    });
+  } catch (error) {
+    console.error("Error fetching scope:", error);
+    message.error("Failed to load mandays limits.");
+  }
+}; */
+
+.scrollable-table-wrapper {
+  overflow-x: auto;
+  /* overflow-y: auto; */
+  overflow-y: hidden;
+  /* max-height:80vh; */
+  max-height:none;
+  max-width:100vw;
+  position: relative;
+  /* margin:51px; */
+  margin-top: 56px;  /* Reduce from 51px */
+  padding: 0px 10px 10px 10px;
+  /* scrollbar-width: thin; */
+  /* border-top: 1px solid #d9d9d9 */
+}

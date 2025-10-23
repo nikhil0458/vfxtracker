@@ -1,0 +1,92 @@
+
+
+.container {
+  display: flex;
+  flex-direction: row; 
+  justify-content: space-between; 
+  align-items: flex-start; 
+  width: 100%;
+  padding: 20px;
+  /* box-sizing: border-box; */
+  flex-wrap: nowrap; 
+}
+
+.forms {
+  display: flex;
+  flex-direction: row; 
+  /* gap: 20px; */
+  /* width: 65%;  */
+  /* box-sizing: border-box; */
+  /* border-width: 4px; */
+  /* border: 4px; */
+  
+}
+
+.templates {
+  display: flex;
+  flex-direction: column; 
+  width: 30%; 
+  margin-left: auto; 
+  margin-top: 0; 
+}
+
+.form-containers{
+  display: flex;
+  flex-grow: 1;
+  flex-basis: 45%;
+  min-width: 250px;
+  
+  /* background-color:  #aaf5a3; */
+  /* background-color: transparent; */
+  
+  padding: 20px;
+  /* border-radius: 8px; */
+  
+  border: 1px solid grey;
+
+  
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+  color: #ecf0f1;
+  /* color: #b9babb; */
+  box-sizing: border-box;
+  margin: 20px;
+  overflow: hidden;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column; 
+    align-items: center; 
+  }
+
+  .forms {
+    width: 100%; 
+    flex-direction: column; 
+  }
+
+  .templates {
+    width: 100%; 
+    margin-left: 0;
+    margin-top: 20px;
+  }
+
+  .form-containers {
+    flex-basis: 100%; 
+  }
+}
+
+@media (max-width: 768px) {
+  .form-containers {
+    flex-basis: 100%; 
+  }
+}
+
+@media (max-width: 480px) {
+  .form-containers {
+    padding: 10px; 
+  }
+
+  .templates {
+    width: 100%; 
+  }
+}

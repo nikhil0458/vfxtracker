@@ -1,0 +1,176 @@
+ .light-theme .custom-table .ant-table-thead > tr > th {
+  
+  
+  background-color: #b1f5b8;
+  color: #4a0f0f; 
+  
+  /* background: white; */
+  
+  /* border-color:lightblue; */
+ }
+ 
+ .light-theme .custom-table .ant-table-tbody > tr > td {
+  background-color: #979797;
+  background-color: #b1f5b8;
+  color: #4a0f0f; 
+  height: 20px; 
+  /* or whatever you want */
+  padding: 8px 16px;
+   /* optional: reduce if content looks crowded */
+  line-height: 1.2;
+  /* border-color:lightblue; */
+} 
+
+/* .ant-table-body {
+  padding-bottom: 12px;
+}
+
+.custom-table .ant-table-body {
+  overflow-x: auto !important;
+}
+
+.custom-table .ant-table-content {
+  min-width: max-content;
+} */
+
+
+.light-theme .custom-table {
+  /* border: 2px solid #ccc; */
+  border: 1px solid #ccc;
+  height: 100%;
+}
+/* Work.css */
+
+.custom-pagination .ant-pagination-item {
+  /* background-color: #b1f5b8 !important; */
+  /* border-color: #b1f5b8 !important; */
+}
+
+.custom-pagination .ant-pagination-item-active {
+  /* background-color: #b1f5b8 !important; */
+  /* border-color: #b1f5b8 !important; */
+}
+
+.custom-pagination .ant-pagination-item a {
+  color: #393838 !important;
+}
+
+.custom-pagination .ant-pagination-item-active a {
+  color: #393838 !important;
+}
+
+.custom-pagination .ant-pagination-next,
+.custom-pagination .ant-pagination-prev {
+  /* background-color:#b1f5b8 !important; */
+  /* border-color: #b1f5b8!important; */
+}
+
+/* Change the row highlight color on hover */
+/* .custom-table .ant-table-tbody > tr:hover td{
+  background-color: #b9dafd !important; 
+} */
+
+.custom-pagination .ant-pagination-next a,
+.custom-pagination .ant-pagination-prev a {
+  color: #615757 !important;
+}
+
+/* Work.css */
+
+.custom-table .ant-table-cell {
+  white-space: nowrap;
+}
+
+.custom-table .ant-table-scroll .ant-table-body {
+  background-color: #333;
+}
+
+/* .thumbnail {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+} */
+
+.light-theme .custom-table .ant-modal-content {
+  background-color: #b1f5b8;
+  color: #000;
+}
+
+.dark-theme .custom-table .ant-modal-content {
+  background-color: grey;
+  color: #ffffff;
+}
+
+
+
+
+.dark-theme .custom-table .ant-table-tbody > tr:hover td {
+  background: grey;
+  color: #ffffff;
+}
+
+
+
+.dark-theme .custom-table .custom-selected-row {
+  background-color: #e6f7ff !important;
+}
+
+
+/* Dark Theme */
+.dark-theme .sidebar {
+  background-color: #001529 !important;
+}
+
+.dark-theme .sidebar .ant-menu {
+  background-color: #001529 !important;
+}
+
+.light-theme .sidebar {
+  background-color: #f0fcea !important;
+}
+
+.light-theme .sidebar .ant-menu {
+  background-color: #f0fcea !important;
+}
+
+.light-theme .ant-layout-header {
+  background-color: #f0fcea !important;
+
+  color: #000000 !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* .light-theme .sidebar {
+  background-color: #2E604A !important;
+}
+
+.light-theme .ant-layout-header {
+ 
+  background-color: #1B3D2F !important;
+  color: #ffffff !important;
+}
+
+.light-theme .sidebar .ant-menu{
+  background-color:#2E604A ;
+} 
+
+ */
+
+/* #f0fcea */
+
+/* Default row background */
+/* 
+
+
+

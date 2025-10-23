@@ -1,0 +1,365 @@
+/* 
+// useEffect(() => {
+  //   const handleVisibilityChange = () => {
+  //     if (document.visibilityState === "visible") {
+  //       loadInitialData(); // ✅ run your own function again
+  //     }
+  //   };
+  
+  //   document.addEventListener("visibilitychange", handleVisibilityChange);
+  //   return () => {
+  //     document.removeEventListener("visibilitychange", handleVisibilityChange);
+  //   };
+  // }, []);
+  
+
+
+
+
+  // useEffect(() => {
+  //   if (
+  //     data.length > 0 &&
+  //     columns.length > 0 &&
+  //     Object.keys(tableParams?.filters || {}).length > 0
+  //   ) {
+  //     console.log("📦 Reapplying filters/sorters after tab switch");
+  //     updateColumns();
+  //   }
+  // }, [tableParams, data]); */
+
+  /* // useEffect(() => {
+    //   if (tableRestored && data.length > 0 && authorizedDepartments.length > 0) {
+    //     console.log("🔄 Restoring filters/sorting after tab switch...");
+    //     updateColumns();
+    //     setTableRestored(false); // ✅ reset flag
+    //   }
+    // }, [tableRestored, data, authorizedDepartments]); */
+
+
+
+    /* // useEffect(() => {
+      //   const handleTabFocus = () => {
+      //     const savedParams = JSON.parse(localStorage.getItem("bidding_tableParams"));
+      //     const savedData = JSON.parse(localStorage.getItem("biddingData"));
+      
+      //     if (savedParams && savedData?.length > 0) {
+      //       console.log("🔄 Tab focused — restoring table state...");
+      //       setTableParams(savedParams);
+      //       setData(savedData);
+      //       updateColumns(); // ✅ trigger immediately
+      //     }
+      //   };
+      
+      //   window.addEventListener("visibilitychange", () => {
+      //     if (document.visibilityState === "visible") {
+      //       handleTabFocus();
+      //     }
+      //   });
+      
+      //   return () => {
+      //     window.removeEventListener("visibilitychange", handleTabFocus);
+      //   };
+      // }, []);
+    
+    
+    
+      // const restoreState = () => {
+      //   const savedParams = JSON.parse(localStorage.getItem("bidding_tableParams"));
+      //   const savedData = JSON.parse(localStorage.getItem("biddingData"));
+      //   if (savedParams) setTableParams(savedParams);
+      //   if (savedData) setData(savedData);
+      //   setTimeout(updateColumns, 0);
+      // }; */
+
+/* 
+  
+  // const restoreFromStorage = () => {
+  //   const savedParams = JSON.parse(localStorage.getItem("bidding_tableParams"));
+  //   const savedData = JSON.parse(localStorage.getItem("biddingData"));
+
+  //   if (savedParams) {
+  //     setTableParams(savedParams);
+  //   }
+  //   if (savedData?.length > 0) {
+  //     setData(savedData);
+  //   }
+  // };  
+
+
+  .bidding-container {
+    padding: 20px;
+  }
+  
+  .bidding-content {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .dropdown-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .dropdown-item,
+  .manager-options .dropdown-item,
+  .manager-options .checkbox-item {
+    flex-basis: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  
+  .dropdown-label {
+    margin-right: 10px;
+  }
+  
+  .dropdown-button {
+    width: 150px;
+  }
+  
+  .manager-options {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .show-table-button {
+    margin-top: 20px;
+  }
+  
+  @media (max-width: 1024px) {
+    .dropdown-section {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .dropdown-item,
+    .manager-options .dropdown-item,
+    .manager-options .checkbox-item {
+      flex-basis: 100%;
+      width: 100%;
+      justify-content: flex-start;
+    }
+  
+    .dropdown-button {
+      width: 100%;
+      margin-top: 5px;
+    }
+  
+    .manager-options .checkbox-item {
+      margin-bottom: 20px;
+    }
+  
+    .show-table-button {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .dropdown-section {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  
+    .dropdown-item,
+    .manager-options .dropdown-item,
+    .manager-options .checkbox-item {
+      flex-basis: 100%;
+      width: 100%;
+      justify-content: flex-start;
+    }
+  
+    .dropdown-button {
+      width: 100%;
+      margin-top: 5px;
+    }
+  
+    .show-table-button {
+      width: 100%;
+    }
+  }
+   */
+.bidding-container {
+    padding: 20px;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.bidding-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.manager-options button {
+  margin-bottom: 10px;
+  width: 100%;
+}
+.dropdown-section {
+  flex-direction: column;
+  align-items: stretch;
+}
+.dropdown-button {
+  width: 100%;
+  margin: 10px 0;
+}
+
+.show-table-button {
+  width: 100%;
+  margin: 10px 0;
+}
+@media (max-width: 1024px) {
+  .bidding-container {
+      padding: 10px;
+  }
+
+  .dropdown-section {
+      flex-direction: column;
+      align-items: stretch;
+  }
+
+  .manager-options button {
+      width: 100%;
+      margin: 10px 0;
+  }
+
+  .show-table-button {
+      width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .dropdown-section,
+  .manager-options {
+      flex-direction: column;
+      align-items: stretch;
+  }
+
+  .dropdown-button {
+      width: 100%;
+      margin-top: 10px;
+  }
+
+  .show-table-button {
+      width: 100%;
+      margin-top: 10px;
+  }
+
+  .manager-options button {
+      width: 100%;
+      margin: 10px 0;
+  }
+}
+@media (max-width: 1024px) {
+  .bidding-container {
+      padding: 10px;
+  }
+
+  .dropdown-section {
+      flex-direction: column;
+      align-items: stretch;
+  }
+
+  .manager-options button {
+      width: 100%;
+      margin: 10px 0;
+  }
+
+  .show-table-button {
+      width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .dropdown-section,
+  .manager-options {
+      flex-direction: column;
+      align-items: stretch;
+  }
+
+  .dropdown-button {
+      width: 100%;
+      margin-top: 10px;
+  }
+
+  .show-table-button {
+      width: 100%;
+      margin-top: 10px;
+  }
+
+  .manager-options button {
+      width: 100%;
+      margin: 10px 0;
+  }
+}
+@media (max-width: 768px) {
+  .dropdown-button,
+  .show-table-button,
+  .manager-options button {
+      width: 100%;
+      margin-top: 10px;
+  }
+}
+.dropdown-label {
+  margin-bottom: 5px;
+}
+@media (max-width: 768px) {
+  .bidding-container {
+    padding: 10px; /* Adjust padding for smaller screens */
+  }
+
+  .bidding-container div {
+    margin-left: 0; /* Remove excessive margins */
+  }
+
+  .bidding-container label {
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+  }
+
+  .bidding-container .ant-btn {
+    width: 100%; /* Full width for buttons on small screens */
+    margin-top: 10px; /* Add some space between buttons */
+  }
+
+  .bidding-container .dropdown-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+}
+ 
+
+/* .bidding-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.bidding-container .table-wrapper {
+  flex-grow: 1;
+  overflow: hidden; /* Let AntD Table control scrolling */
+/* }  */
+
+.scrollable-table-wrapper {
+  overflow-x: auto;
+  /* overflow-y: auto; */
+  overflow-y: hidden;
+  /* max-height:80vh; */
+  max-height:none;
+  max-width:100vw;
+  position: relative;
+  /* margin:51px; */
+  margin-top: 56px;  /* Reduce from 51px */
+  padding: 0px 10px 10px 10px;
+  /* scrollbar-width: thin; */
+  /* border-top: 1px solid #d9d9d9 */
+}
